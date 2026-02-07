@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\Auth\AuthController;
 use App\Http\Controllers\Api\V1\Order\OrderController;
+use App\Http\Controllers\Api\V1\Payment\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,13 @@ Route::prefix('v1')->group(static function () {
             Route::put('/{order}', [OrderController::class, 'update']);
             Route::delete('/{order}', [OrderController::class, 'destroy']);
             Route::patch('/{order}/status', [OrderController::class, 'updateStatus']);
+
+            // Payment routes: /api/v1/orders/{order}/payments/*
+            Route::post('/{order}/payments', [PaymentController::class, 'process']);
+            Route::get('/{order}/payments', [PaymentController::class, 'index']);
         });
+
+        // Payment methods: /api/v1/payments/methods
+        Route::get('/payments/methods', [PaymentController::class, 'methods']);
     });
 });

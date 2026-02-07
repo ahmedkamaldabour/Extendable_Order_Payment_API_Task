@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class OrderItem extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'order_id',
+        'product_name',
+        'quantity',
+        'price',
+        'subtotal',
+    ];
+
+    protected $casts = [
+        'quantity' => 'integer',
+        'price' => 'decimal:2',
+        'subtotal' => 'decimal:2',
+    ];
+
+    public function order(): BelongsTo
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    protected static function booted(): void
+    {
+        static::creating(static function (self $item) {
+            $item->subtotal = $item->quantity * $item->price;
+        });
+
+        static::updating(static function (self $item) {
+            $item->subtotal = $item->quantity * $item->price;
+        });
+    }
+}

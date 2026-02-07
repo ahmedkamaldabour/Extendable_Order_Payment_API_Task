@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Auth\AuthController;
+use App\Http\Controllers\Api\V1\Order\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,20 @@ Route::prefix('v1')->group(static function () {
         Route::middleware('auth:api')->group(static function () {
             Route::post('logout', [AuthController::class, 'logout']);
             Route::get('me', [AuthController::class, 'me']);
+        });
+    });
+
+    // Protected routes
+    Route::middleware('auth:api')->group(static function () {
+
+        // Order routes: /api/v1/orders/*
+        Route::prefix('orders')->group(static function () {
+            Route::get('/', [OrderController::class, 'index']);
+            Route::post('/', [OrderController::class, 'store']);
+            Route::get('/{order}', [OrderController::class, 'show']);
+            Route::put('/{order}', [OrderController::class, 'update']);
+            Route::delete('/{order}', [OrderController::class, 'destroy']);
+            Route::patch('/{order}/status', [OrderController::class, 'updateStatus']);
         });
     });
 });

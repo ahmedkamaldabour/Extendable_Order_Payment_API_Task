@@ -23,8 +23,8 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions): void {
 
-        // Handle Authentication Exceptions - use unauthenticated method
-        $exceptions->unauthenticated(function (Request $request, AuthenticationException $e) {
+        // Handle Authentication Exceptions (not logged in)
+        $exceptions->render(function (AuthenticationException $e, Request $request) {
             return ApiResponse::error(
                 'Unauthenticated',
                 ['auth' => 'You must be logged in to access this resource'],

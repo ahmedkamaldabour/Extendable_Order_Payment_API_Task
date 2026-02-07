@@ -1,0 +1,628 @@
+{
+  "info": {
+    "_postman_id": "a46b5e7f-18cf-4108-bab6-124af10b2ef9",
+    "name": "Order",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "37515292"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const text = pm.response.text();\r",
+                  "const jsonData = JSON.parse(text);\r",
+                  "const token = jsonData.data.token;\r",
+                  "\r",
+                  "pm.environment.set(\"token\", token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Ahmed",
+                  "type": "text",
+                  "uuid": "b4e8f1e5-0150-4f86-803f-ca4bcb2436ec"
+                },
+                {
+                  "key": "email",
+                  "value": "dabourdabour28@gmail.com",
+                  "type": "text",
+                  "uuid": "35ea70b0-a776-49aa-b919-ceb519c9488a"
+                },
+                {
+                  "key": "password",
+                  "value": "Aa123456$",
+                  "type": "text",
+                  "uuid": "7280d35c-0f2f-4c9d-be8d-b33e69b6d353"
+                },
+                {
+                  "key": "password_confirmation",
+                  "value": "Aa123456$",
+                  "type": "text",
+                  "uuid": "674446fd-b4cb-42ec-b158-5948639af58b"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{url}}/auth/register",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const text = pm.response.text();\r",
+                  "const jsonData = JSON.parse(text);\r",
+                  "const token = jsonData.data.token;\r",
+                  "\r",
+                  "pm.environment.set(\"token\", token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "dabourdabour28@gmail.com",
+                  "type": "text",
+                  "uuid": "35ea70b0-a776-49aa-b919-ceb519c9488a"
+                },
+                {
+                  "key": "password",
+                  "value": "Aa123456$",
+                  "type": "text",
+                  "uuid": "7280d35c-0f2f-4c9d-be8d-b33e69b6d353"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{url}}/auth/login",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "logout",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
+            "url": {
+              "raw": "{{url}}/auth/logout",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "me",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/auth/me",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "order and payment",
+      "item": [
+        {
+          "name": "payment",
+          "item": [
+            {
+              "name": "All methods",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n//   \"method\": \"stripe\",\r\n  \"method\": \"credit_card\",\r\n  \"card_number\": \"4242424242424242\",\r\n  \"expiry_month\": 12,\r\n  \"expiry_year\": 2026,\r\n  \"cvv\": \"123\"\r\n}\r\n\r\n\r\n// {\r\n//   \"method\": \"stripe\",\r\n//   \"token\": \"tok_9f8a7c6b5d4e3f2a\"\r\n// }\r\n\r\n\r\n// {\r\n//   \"method\": \"paypal\",\r\n//   \"email\": \"user@example.com\"\r\n// }"
+                },
+                "url": {
+                  "raw": "{{url}}/orders/1/payments",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "orders",
+                    "1",
+                    "payments"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "index",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n//   \"method\": \"stripe\",\r\n  \"method\": \"credit_card\",\r\n  \"card_number\": \"4242424242424242\",\r\n  \"expiry_month\": 12,\r\n  \"expiry_year\": 2026,\r\n  \"cvv\": \"123\"\r\n}\r\n\r\n\r\n// {\r\n//   \"method\": \"stripe\",\r\n//   \"token\": \"tok_9f8a7c6b5d4e3f2a\"\r\n// }\r\n\r\n\r\n// {\r\n//   \"method\": \"paypal\",\r\n//   \"email\": \"user@example.com\"\r\n// }"
+                },
+                "url": {
+                  "raw": "{{url}}/orders/1/payments",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "orders",
+                    "1",
+                    "payments"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "pay",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n//   \"method\": \"stripe\",\r\n  \"method\": \"credit_card\",\r\n  \"card_number\": \"4242424242424242\",\r\n  \"expiry_month\": 12,\r\n  \"expiry_year\": 2026,\r\n  \"cvv\": \"123\"\r\n}\r\n\r\n\r\n// {\r\n//   \"method\": \"stripe\",\r\n//   \"token\": \"tok_9f8a7c6b5d4e3f2a\"\r\n// }\r\n\r\n\r\n// {\r\n//   \"method\": \"paypal\",\r\n//   \"email\": \"user@example.com\"\r\n// }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/orders/1/payments",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "orders",
+                    "1",
+                    "payments"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n//   \"method\": \"stripe\",\r\n  \"method\": \"credit_card\",\r\n  \"card_number\": \"4242424242424242\",\r\n  \"expiry_month\": 12,\r\n  \"expiry_year\": 2026,\r\n  \"cvv\": \"123\"\r\n}\r\n\r\n\r\n// {\r\n//   \"method\": \"stripe\",\r\n//   \"token\": \"tok_9f8a7c6b5d4e3f2a\"\r\n// }\r\n\r\n\r\n// {\r\n//   \"method\": \"paypal\",\r\n//   \"email\": \"user@example.com\"\r\n// }",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{url}}/orders/1/payments",
+                      "host": [
+                        "{{url}}"
+                      ],
+                      "path": [
+                        "orders",
+                        "1",
+                        "payments"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Host",
+                      "value": "127.0.0.1:8000"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    },
+                    {
+                      "key": "X-Powered-By",
+                      "value": "PHP/8.3.28"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-cache, private"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 07 Feb 2026 20:56:02 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": 201,\n    \"success\": true,\n    \"message\": \"Payment processed successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"payment_id\": \"CC_6987a6e297977_1770497762\",\n        \"order_id\": 1,\n        \"status\": \"successful\",\n        \"status_label\": \"Successful\",\n        \"method\": \"credit_card\",\n        \"amount\": \"6045.00\",\n        \"created_at\": \"2026-02-07T20:56:02.000000Z\"\n    }\n}"
+                },
+                {
+                  "name": "failed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n//   \"method\": \"stripe\",\r\n  \"method\": \"credit_card\",\r\n  \"card_number\": \"4000000000000002\",\r\n  \"expiry_month\": 12,\r\n  \"expiry_year\": 2026,\r\n  \"cvv\": \"123\"\r\n}\r\n\r\n\r\n// {\r\n//   \"method\": \"stripe\",\r\n//   \"token\": \"tok_9f8a7c6b5d4e3f2a\"\r\n// }\r\n\r\n\r\n// {\r\n//   \"method\": \"paypal\",\r\n//   \"email\": \"user@example.com\"\r\n// }",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{url}}/orders/1/payments",
+                      "host": [
+                        "{{url}}"
+                      ],
+                      "path": [
+                        "orders",
+                        "1",
+                        "payments"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Content",
+                  "code": 422,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Host",
+                      "value": "127.0.0.1:8000"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    },
+                    {
+                      "key": "X-Powered-By",
+                      "value": "PHP/8.3.28"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-cache, private"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 07 Feb 2026 20:56:33 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": 422,\n    \"success\": false,\n    \"message\": \"Payment processing failed: Card declined\",\n    \"errors\": {\n        \"payment\": \"Payment processing failed: Card declined\"\n    }\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "get",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/orders",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "show",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/orders/1",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "orders",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "strore",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"items\": [\r\n        {\r\n            \"product_name\": \"iPhone 15 Pro\",\r\n            \"quantity\": 2,\r\n            \"price\": 1200\r\n        },\r\n        {\r\n            \"product_name\": \"AirPods Pro\",\r\n            \"quantity\": 1,\r\n            \"price\": 249\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/orders",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"items\": [\r\n        {\r\n            \"product_name\": \"iPhone 15 Pro\",\r\n            \"quantity\": 4,\r\n            \"price\": 1200\r\n        },\r\n        {\r\n            \"product_name\": \"AirPods Pro\",\r\n            \"quantity\": 5,\r\n            \"price\": 249\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/orders/1",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "orders",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "change status",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"status\": \"confirmed\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/orders/1/status",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "orders",
+                "1",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/orders/1",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "orders",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

@@ -42,6 +42,11 @@ class OrderService
 
     public function deleteOrder(Order $order): bool
     {
+        // Business Rule: Can't delete order with payments
+        if ($order->hasPayments()) {
+            throw OrderException::cannotDeleteWithPayments();
+        }
+
         return $this->orderRepository->delete($order);
     }
 
@@ -61,6 +66,11 @@ class OrderService
     {
         if ($order->status === OrderStatus::Cancelled) {
             throw OrderException::cannotModifyCancelled();
+        }
+
+        // Business Rule: Can't cancel order with successful payment
+        if ($status === OrderStatus::Cancelled && $order->hasSuccessfulPayment()) {
+            throw OrderException::cannotCancelWithPayment();
         }
 
         return $this->orderRepository->update($order, ['status' => $status]);

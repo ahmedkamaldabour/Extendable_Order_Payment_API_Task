@@ -33,6 +33,21 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function hasPayments(): bool
+    {
+        return $this->payments()->exists();
+    }
+
+    public function hasSuccessfulPayment(): bool
+    {
+        return $this->payments()->successful()->exists();
+    }
+
     public function scopeStatus($query, OrderStatus $status)
     {
         return $query->where('status', $status->value);
